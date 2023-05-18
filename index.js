@@ -21,9 +21,7 @@ passwordChecker.addEventListener('input', function() {
     }
 });
 
-
-
-
+// Popup sign up window
 
 
 // Future plans. checking if names is already used.
