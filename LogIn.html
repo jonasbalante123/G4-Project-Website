@@ -34,9 +34,7 @@
             
         </section>
         <div class="container">
-            <form action="php\action_page.php">
-<!-- Add an script that will know if there is 6 chars or more
-   and change the status of aria invalid -->
+            <form action="php\account.php">
                 <div class="grid">
                   <label for="username">
                     Username
@@ -51,13 +49,13 @@
                 <a href="site/main.html"><button type="button">Log in</button></a>
                
                 <div>
-                <a href="#" role="button" onclick="popup()">Click here if you do not have an account</a>
+                <a href="#" role="button" onclick="popup()" class="secondary">Click here if you do not have an account</a>
                 </div>
               </form>
         </div>
   </body>
 </article>
-  <script src="index.js"></script>
+  <script src="site\usernamecheck.js"></script>
   <script src="minimal-theme-switcher.js"></script>
   <script>
 

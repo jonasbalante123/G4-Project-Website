@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="import" href="..\php\account.php">
     <title>Sign Up</title>
   </head>
   <body><article>
@@ -34,7 +35,7 @@
             
         </section>
         <div class="container">
-            <form action="..\php\action_page.php">
+            <form action="..\php\account.php" method="post">
                 <div class="grid">
                   <label for="username">
                     Username
@@ -51,7 +52,8 @@
                 <input type="email" id="email" name="email" placeholder="Example@yourmail.com" required>
               
                 <!-- Button -->
-                <a href="main.html"><button type="submit">Sign Up</button></a>
+                 <input type="submit" value="Sign up">
+                 
                 <div>
                   <input type="checkbox" role="switch" name="terms" id="terms" required>
                   I agree to everything <a>JJonasB</a> said.
