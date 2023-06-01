@@ -1,0 +1,19 @@
+#head {
+    background-color: #282f35;
+    background-size: cover;
+    background-position: center;
+}
+#color1 {
+    --background-color:#264653;
+    --border-color: #264653
+}
+
+#color2 {
+    --background-color:#2a9d8f;
+    --border-color: #2a9d8f
+}
+
+#color3 {
+    --background-color:#1d3557;
+    --border-color: #1d3557
+}

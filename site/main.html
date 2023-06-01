@@ -7,6 +7,7 @@
     <title>Main</title>
     <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pfp.css">
 </head>
 
 <body>
@@ -15,18 +16,15 @@
 
 <nav class="container-fluid">
   <ul>
-    <li><strong><a href="main.html" class="contrast">We need a logo</a></strong></li>
+    <li><strong><a href="main.html" class="contrast">Quiz Master</a></strong></li>
   </ul>
-
+  <!-- Menu -->
   <ul>
-    <li><a href="#" class="secondary">Profile</a></li>
-
-<!-- Menu -->
     <li>
       <details role="list" dir="rtl">
         <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
         <ul role="listbox">
-          <li><a href="">Create Quiz</a></li>
+          <li><a href="CreatQ.html">Create Quiz</a></li>
           <li><a href="">View Quizes</a></li>
           <li><a href="">Leaderboards</a></li>
           <li><a href="AboutUs.html">About Us</a></li>
@@ -45,9 +43,29 @@
         </ul>
       </details>
     </li>
+
+<!--  <a href="#" class="secondary profileImg"> 
+            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34" alt="">
+            </a>-->
+      <li>
+        <details role="list" dir="rtl">
+          <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
+            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
+            </a>
+            </summary>
+          <ul role="listbox">
+    <li>
+      <a href="Profile.html" class="secondary">Profile</a>
+    </li>
+    <li>
+      <a href="#settings" class="secondary">Settings</a>
+    </li>
     <li>
       <a href="../LogIn.html" class="secondary">Sign Out</a>
     </li>
+          </ul>
+        </details>
+      </li>
   </ul>
   <!-- Theme Changer -->
 </nav>
@@ -56,8 +74,13 @@
 
 <!-- Header -->
 
-<header class="container-fluid header-image">
-  <h1 class="headings">Doing something right now <br> I'll come back soon.</h1>
+<header class="container-fluid">
+  <article>
+    <div>
+  <h1>Welcome >Enter Username< To the website</h1>
+  <p>Thank you for being with us</p>
+    </div>
+  </article>
 </header>
 
 <!-- Header -->
@@ -70,6 +93,7 @@
 <article>Bagel are Cool</article>
 </main>
 <!-- Main End-->
+
 </body>
 
 <script src="index.js"></script>

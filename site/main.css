@@ -1,5 +1,7 @@
 .header-image {
-    background-image: url("https://i.redd.it/w3kr4m2fi3111.png");
+    background-color: #E0E0E0;
     background-size: cover;
     background-position: center;
-    height: 300px; /* Adjust the height as needed */
+    height: 300px; 
+}
+  

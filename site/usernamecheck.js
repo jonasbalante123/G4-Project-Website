@@ -2,7 +2,7 @@
 const usernameChecker = document.getElementById("username");
 
 usernameChecker.addEventListener('input', function() {
-    if (usernameChecker.value.length >= 5) {
+    if (usernameChecker.value.length >= 6) {
         usernameChecker.setAttribute("aria-invalid", "false");
     } else {
         usernameChecker.setAttribute("aria-invalid", "true");
@@ -14,7 +14,7 @@ usernameChecker.addEventListener('input', function() {
 const passwordChecker = document.getElementById("password");
 
 passwordChecker.addEventListener('input', function() {
-    if (passwordChecker.value.length >= 5) {
+    if (passwordChecker.value.length >= 6) {
         passwordChecker.setAttribute("aria-invalid", "false");
     } else {
         passwordChecker.setAttribute("aria-invalid", "true");
