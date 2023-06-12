@@ -78,7 +78,7 @@
               </summary>
             <ul role="listbox">
       <li>
-        <a href="Profile.html" class="secondary">Profile</a>
+        <a href="Profile.php" class="secondary">Profile</a>
       </li>
       <li>
         <a href="#settings" class="secondary">Settings</a>
@@ -102,13 +102,13 @@
         </div>
     <div class="grid">
         <div>
-            <a href=""><button class="secondary" id="color1">Multiple Choice</button></a>
+            <a href="create/multiplechoice.php"><button class="secondary" id="color1">Multiple Choice</button></a>
         </div>
         <div>
             <a href="create/Identification.php"><button class="secondary" id="color2">Identification</button></a>
         </div>
         <div>
-            <a href=""><button class="secondary" id="color3">True or False</button></a>
+            <a href="create/truefalse.php"><button class="secondary" id="color3">True or False</button></a>
         </div>
     </div>
 </main>

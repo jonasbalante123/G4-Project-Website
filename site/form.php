@@ -1,7 +1,12 @@
 <?php
-require_once 'formultiplechoice.php';
-?>
+// form.php
 
+// Check if there are any errors stored in the session
+session_start();
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +14,7 @@ require_once 'formultiplechoice.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating a Multiple Choice Quiz</title>
-    <link rel="stylesheet" href="..\..\node_modules\@picocss\pico\css\pico.min.css">
+    <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
     <link rel="stylesheet" href="..\pfp.css">
 </head>
 <body>
@@ -68,8 +73,15 @@ require_once 'formultiplechoice.php';
   </nav>
 
   <div class="container">
-  <form action="formultiplechoice.php" method="post">
+  <form action="create\formultiplechoice.php" method="post">
         <h2>Create Multiple Choice Quiz</h2>
+        <?php if (!empty($errors)): ?>
+            <div class="error">
+                <?php foreach ($errors as $error): ?>
+                    <p><?php echo $error; ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <label for="quizTitle">
             Quiz Title:
             <input type="text" name="quizTitle" required>
@@ -153,7 +165,7 @@ require_once 'formultiplechoice.php';
       optionLabel.textContent = `Option ${i}:`;
       const optionInput = document.createElement("input");
       optionInput.type = "text";
-      optionInput.name = `options[${questionCount}][]`; // Fix the name attribute here
+      optionInput.name = `options[${questionCount}][${i - 1}]`;
       optionInput.required = true;
 
       optionsDiv.appendChild(optionLabel);
@@ -171,5 +183,7 @@ require_once 'formultiplechoice.php';
 </script>
 
 
-
   </div>
+
+</body>
+</html>

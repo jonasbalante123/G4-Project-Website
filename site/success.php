@@ -13,7 +13,7 @@
   <!-- Navigation -->
   <nav class="container-fluid">
     <ul>
-      <li><strong><a href="..\main.php" class="contrast">Quiz Master</a></strong></li>
+      <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
     </ul>
     <!-- Menu -->
     <ul>
@@ -21,10 +21,10 @@
         <details role="list" dir="rtl">
           <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
           <ul role="listbox">
-            <li><a href="..\CreatQ.php">Create Quiz</a></li>
+            <li><a href="CreatQ.php">Create Quiz</a></li>
             <li><a href="ViewQ.php">View Quizzes</a></li>
             <li><a href="">Users</a></li>
-            <li><a href="..\AboutUs.php">About Us</a></li>
+            <li><a href="AboutUs.php">About Us</a></li>
           </ul>
         </details>
       </li>
@@ -53,10 +53,10 @@
               <a href="Profile.html" class="secondary">Profile</a>
             </li>
             <li>
-              <a href="../settings.html" class="secondary">Settings</a>
+              <a href="settings.html" class="secondary">Settings</a>
             </li>
             <li>
-              <a href="../SignUp.php" class="secondary">Sign Out</a>
+              <a href="SignUp.php" class="secondary">Sign Out</a>
             </li>
           </ul>
         </details>
@@ -71,6 +71,6 @@
     <p><a href="main.php">Go back to the main page</a></p>
   </div>
 
-  <script src="..\..\minimal-theme-switcher.js"></script>
+  <script src="..\minimal-theme-switcher.js"></script>
 </body>
 </html>

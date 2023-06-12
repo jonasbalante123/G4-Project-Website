@@ -1,19 +1,62 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+$host = 'localhost';
+$dbUsername = 'root';
+$dbPassword = '';
+$database = 'quiz_db';
+
+$conn = new mysqli($host, $dbUsername, $dbPassword, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch True/False quizzes
+$sql = "SELECT * FROM true_false_quizzes";
+$result = $conn->query($sql);
+
+$trueFalseQuizzes = array();
+while ($row = $result->fetch_assoc()) {
+    $trueFalseQuizzes[] = $row;
+}
+
+// Fetch Identification quizzes
+$sql = "SELECT * FROM identification_quizzes";
+$result = $conn->query($sql);
+
+$identificationQuizzes = array();
+while ($row = $result->fetch_assoc()) {
+    $identificationQuizzes[] = $row;
+}
+
+// Fetch Multiple Choice quizzes
+$sql = "SELECT * FROM multiple_choice_quizzes";
+$result = $conn->query($sql);
+
+$multipleChoiceQuizzes = array();
+while ($row = $result->fetch_assoc()) {
+    $multipleChoiceQuizzes[] = $row;
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Quizzes</title>
-  <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
-  <link rel="stylesheet" href="viewQ.css">
-  <link rel="stylesheet" href="pfp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Quizzes</title>
+    <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="container-fluid">
+   <!-- Navigation -->
+   <nav class="container-fluid">
     <ul>
-      <li><strong><a href="..\main.php" class="contrast">Quiz Master</a></strong></li>
+      <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
     </ul>
     <!-- Menu -->
     <ul>
@@ -53,63 +96,61 @@
               <a href="Profile.html" class="secondary">Profile</a>
             </li>
             <li>
-              <a href="settings.html" class="secondary">Settings</a>
+              <a href="../settings.html" class="secondary">Settings</a>
             </li>
             <li>
-              <a href="SignUp.php" class="secondary">Sign Out</a>
+              <a href="../SignUp.php" class="secondary">Sign Out</a>
             </li>
           </ul>
         </details>
       </li>
     </ul>
   </nav>
-
   <div class="container">
-    <?php
-    // Database configuration
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "quiz_db";
+  <h1>True/False Quizzes</h1>
+  <?php if (empty($trueFalseQuizzes)): ?>
+    <p>No True/False quizzes found.</p>
+  <?php else: ?>
+    <ul>
+      <?php foreach ($trueFalseQuizzes as $quiz): ?>
+        <li>
+          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
+          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
+          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
 
-    // Create a connection to the database
-    $conn = new mysqli($servername, $username, $password, $database);
+  <h1>Identification Quizzes</h1>
+  <?php if (empty($identificationQuizzes)): ?>
+    <p>No Identification quizzes found.</p>
+  <?php else: ?>
+    <ul>
+      <?php foreach ($identificationQuizzes as $quiz): ?>
+        <li>
+          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
+          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
+          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
 
-    // Check the connection
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve the quizzes from the database
-    $sql = "SELECT * FROM quizzes";
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-      // Display the quizzes in a table
-      echo "<h2>Select a Quiz:</h2>";
-      echo "<table>";
-      echo "<tr><th>ID</th><th>Title</th><th>Description</th></tr>";
-      while ($row = $result->fetch_assoc()) {
-        $quizId = $row['id'];
-        $quizTitle = $row['title'];
-        $quizDescription = $row['description'];
-        echo "<tr>";
-        echo "<td>$quizId</td>";
-        echo "<td><a href='quiz.php?quizId=$quizId'>$quizTitle</a></td>";
-        echo "<td>$quizDescription</td>";
-        echo "</tr>";
-      }
-      echo "</table>";
-    } else {
-      echo "<p>No quizzes available.</p>";
-    }
-
-    // Close the database connection
-    $conn->close();
-    ?>
-
+  <h1>Multiple Choice Quizzes</h1>
+  <?php if (empty($multipleChoiceQuizzes)): ?>
+    <p>No Multiple Choice quizzes found.</p>
+  <?php else: ?>
+    <ul>
+      <?php foreach ($multipleChoiceQuizzes as $quiz): ?>
+        <li>
+          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
+          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
+          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
   </div>
-
-  <script src="minimal-theme-switcher.js"></script>
 </body>
 </html>

@@ -1,59 +1,48 @@
 <?php
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "quiz_db";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the quiz details
-    $quizTitle = $_POST['quiz_title'];
-    $quizDescription = $_POST['quiz_description'];
-
-    // Database configuration
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "quiz_db";
-
-    // Create a connection to the database
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $quizTitle = $_POST['quizTitle'];
+    $quizDescription = $_POST['quizDescription'];
 
     // Insert the quiz details into the database
-    $sql = "INSERT INTO quizzes (title, description) VALUES ('$quizTitle', '$quizDescription')";
-    $conn->query($sql);
-
-    // Get the ID of the inserted quiz
-    $quizId = $conn->insert_id;
-
-    // Get the questions and options
-    $questions = $_POST['questions'];
-    $options = $_POST['options'];
-    $correctOptions = $_POST['correct_options'];
+    $sql = "INSERT INTO quizzes (quiz_title, description) VALUES ('$quizTitle', '$quizDescription')";
+    mysqli_query($conn, $sql);
+    $quizId = mysqli_insert_id($conn); // Get the last inserted quiz ID
 
     // Insert the questions and options into the database
-    for ($i = 0; $i < count($questions); $i++) {
-        $question = $questions[$i];
-        $option1 = $options[$i][0];
-        $option2 = $options[$i][1];
-        $option3 = $options[$i][2];
-        $option4 = $options[$i][3];
-        $correctOption = $correctOptions[$i];
+    if (isset($_POST['question'])) {
+        for ($i = 0; $i < count($_POST['question']); $i++) {
+            $question = $_POST['question'][$i];
+            $correctOption = $_POST['correctOption'][$i];
+            $options = $_POST['options'][$i + 1]; // Adjusting index to match question number
 
-        $sql = "INSERT INTO questions (quiz_id, question, option1, option2, option3, option4, correct_option) 
-                VALUES ('$quizId', '$question', '$option1', '$option2', '$option3', '$option4', '$correctOption')";
-        $conn->query($sql);
+            // Insert the question into the database
+            $sql = "INSERT INTO questions (quiz_id, question_text, correct_option) VALUES ('$quizId', '$question', '$correctOption')";
+            mysqli_query($conn, $sql);
+            $questionId = mysqli_insert_id($conn); // Get the last inserted question ID
+
+            // Insert the options into the database
+            foreach ($options as $option) {
+                $sql = "INSERT INTO options (question_id, option_text) VALUES ('$questionId', '$option')";
+                mysqli_query($conn, $sql);
+            }
+        }
     }
 
-    // Close the database connection
-    $conn->close();
-
-    // Redirect back to the multiplechoice.php page with success message
-    header("Location: ..\..\site\create\multiplechoice.php?success=1");
+    // Redirect to a success page or perform any additional actions
+    header("Location: ..\..\site\success.php");
     exit();
 } else {
-    // Redirect to the multiplechoice.php page
-    header("Location: ..\..\site\create\multiplechoice.php");
+    // Handle invalid request
+    echo "ITS AN ERROR";
     exit();
 }
+
 ?>

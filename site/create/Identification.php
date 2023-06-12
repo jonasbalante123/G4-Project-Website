@@ -64,8 +64,10 @@
     </ul>
   </nav>
 
+  
+
   <div class="container">
-    <form action="..\..\php\Identification\save_quiz.php" method="post">
+    <form action="..\connect.php" method="post">
       <div class="row">
         <label for="title">Quiz Title:</label>
         <input type="text" name="title" id="title" required>
