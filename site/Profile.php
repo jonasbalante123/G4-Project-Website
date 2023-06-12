@@ -1,22 +1,33 @@
+<?php
+    session_start();
+
+    include_once '..\\php\\connect.php';
+    // Check if the user is logged in
+    if (!isset($_SESSION['username']) || !isset($_SESSION['email'])) {
+        // Redirect the user to the login page
+        header("Location: login.php");
+        exit();
+    }
+    
+    // Retrieve the username and email from the session
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+    $password = "SELECT `password` from `user_accounts`"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
-    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="pfp.css">
 </head>
-
 <body>
-
-<!-- Navigation -->
-
 <nav class="container-fluid">
   <ul>
-    <li><strong><a href="main.html" class="contrast">Quiz Master</a></strong></li>
+    <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
   </ul>
   <!-- Menu -->
   <ul>
@@ -24,10 +35,10 @@
       <details role="list" dir="rtl">
         <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
         <ul role="listbox">
-          <li><a href="CreatQ.html">Create Quiz</a></li>
+          <li><a href="CreatQ.php">Create Quiz</a></li>
           <li><a href="">View Quizes</a></li>
           <li><a href="">Leaderboards</a></li>
-          <li><a href="AboutUs.html">About Us</a></li>
+          <li><a href="AboutUs.php">About Us</a></li>
         </ul>
       </details>
     </li>
@@ -55,48 +66,34 @@
             </summary>
           <ul role="listbox">
     <li>
-      <a href="Profile.html" class="secondary">Profile</a>
+      <a href="Profile.php" class="secondary">Profile</a>
     </li>
     <li>
       <a href="#settings" class="secondary">Settings</a>
     </li>
     <li>
-      <a href="../LogIn.html" class="secondary">Sign Out</a>
+      <a href="logout.php" class="secondary">Sign Out</a>
     </li>
           </ul>
         </details>
       </li>
   </ul>
-  <!-- Theme Changer -->
 </nav>
+<main class="container">
+    <!-- THE ONE I COPY AND PASTED-->
 
-<!-- Navigation -->
-
-<!-- Header -->
-
-<header class="container-fluid">
-  <article>
-    <div>
-  <h1>Welcome >Enter Username< To the website</h1>
-  <p>Thank you for being with us</p>
-    </div>
-  </article>
-</header>
-
-<!-- Header -->
-
-
-<!-- Main -->
-<main class="container-fluid">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quaerat atque deserunt obcaecati odio dolores voluptatibus nihil molestias doloribus commodi dolor ex tempora quia qui ducimus consequuntur repellat distinctio nostrum suscipit, vitae fuga quo. Dolore in quasi dolorum ex culpa neque amet architecto autem. Quae, consequuntur non. Alias ipsum, porro voluptates tempora asperiores possimus eius eveniet, dignissimos tenetur dolores optio minima modi enim illum distinctio harum at in pariatur! Illum?
-
-<article>Bagel are Cool</article>
+    <p>Your Username</p>
+    <?php 
+    echo $username .' <a href="#">Edit?</a>'
+    ?> <br><br>
+    <p>password</p>
+    <?php 
+    echo $password .' <a href="#">Edit?</a>'
+    ?>
+    <p>Making a img that can be change and will take effect on the whole site jsut on the session
+        <br> But for now this works
+    </p>
 </main>
-<!-- Main End-->
-
 </body>
-
-<script src="index.js"></script>
-<script src="../minimal-theme-switcher.js"></script>
-
 </html>
+<script src=""></script>

@@ -1,12 +1,14 @@
 <?php
-$servername = "localhost"; 
-$username = "root";
-$password = "";
-$dbname = "g4_quiz_accounts";
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'quiz_db';
 
-$conn = new mysqli($servername,$username,$password,$dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Create a connection
+$connection = mysqli_connect($servername, $username, $password, $database);
+
+// Check connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected Successfully!"
 ?>

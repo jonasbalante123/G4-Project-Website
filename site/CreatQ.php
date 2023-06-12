@@ -4,17 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Creating Quiz</title>
     <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
     <link rel="stylesheet" href="CreatQ.css">
     <link rel="stylesheet" href="pfp.css">
+    <style>
+          .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .headings {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .grid div {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        details {
+            margin-bottom: 20px;
+        }
+
+
+    </style>
 </head>
 <body>
     <!-- Navigation -->
 
 <nav class="container-fluid">
     <ul>
-      <li><strong><a href="main.html" class="contrast">Quiz Master</a></strong></li>
+      <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
     </ul>
     <!-- Menu -->
     <ul>
@@ -23,7 +48,7 @@
           <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
           <ul role="listbox">
             <li><a href="CreatQ.html">Create Quiz</a></li>
-            <li><a href="">View Quizes</a></li>
+            <li><a href="ViewQ.php">View Quizzes</a></li>
             <li><a href="">Leaderboards</a></li>
             <li><a href="AboutUs.html">About Us</a></li>
           </ul>
@@ -59,7 +84,7 @@
         <a href="#settings" class="secondary">Settings</a>
       </li>
       <li>
-        <a href="../LogIn.html" class="secondary">Sign Out</a>
+        <a href="SignUp.php" class="secondary">Sign Out</a>
       </li>
             </ul>
           </details>
@@ -77,10 +102,10 @@
         </div>
     <div class="grid">
         <div>
-            <a href="create/Multiple Choice.html"><button class="secondary" id="color1">Multiple Choice</button></a>
+            <a href=""><button class="secondary" id="color1">Multiple Choice</button></a>
         </div>
         <div>
-            <a href=""><button class="secondary" id="color2">Identification</button></a>
+            <a href="create/Identification.php"><button class="secondary" id="color2">Identification</button></a>
         </div>
         <div>
             <a href=""><button class="secondary" id="color3">True or False</button></a>

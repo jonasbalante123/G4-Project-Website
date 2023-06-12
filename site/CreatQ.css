@@ -17,3 +17,8 @@
     --background-color:#1d3557;
     --border-color: #1d3557
 }
+
+
+a {
+    text-decoration: none;
+}

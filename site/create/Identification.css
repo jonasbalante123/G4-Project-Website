@@ -28,3 +28,7 @@
       align-items: center;
       gap: 10px;
   }
+
+  button {
+    width: 50%;
+  }
