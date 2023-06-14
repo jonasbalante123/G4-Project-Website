@@ -1,3 +1,6 @@
+<?php
+include("login_checker.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

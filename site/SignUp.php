@@ -45,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usernameError = "Username already exists";
     } else {
         // Prepare and execute the query to insert the new user
-        $insertQuery = "INSERT INTO user_accounts (username, password, email) VALUES (?, ?, ?)";
+        $insertQuery = "INSERT INTO user_accounts (username, password, email, user_type) VALUES (?, ?, ?, 'user')";
         $insertStmt = $conn->prepare($insertQuery);
         $insertStmt->bind_param('sss', $username, $password, $email);
         if ($insertStmt->execute()) {
             // Registration successful, redirect the user to the login page
-            header("Location: ..\\LogIn.php");
+            header("Location: ..\\index.php");
             exit();
         } else {
             $error = "Registration failed";
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- Button -->
                 <button type="submit">Sign Up</button>
                 <div>
-                    <a href="..\LogIn.php" role="button" class="secondary">Click here if you already have an account</a>
+                    <a href="..\index.php" role="button" class="secondary">Click here if you already have an account</a>
                 </div>
             </form>
         </div>

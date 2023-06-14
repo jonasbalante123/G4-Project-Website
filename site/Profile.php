@@ -1,11 +1,11 @@
 <?php
     session_start();
 
-    include_once '..\\php\\connect.php';
+    include_once 'connect.php';
     // Check if the user is logged in
     if (!isset($_SESSION['username']) || !isset($_SESSION['email'])) {
         // Redirect the user to the login page
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit();
     }
     
