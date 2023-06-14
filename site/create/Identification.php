@@ -67,7 +67,8 @@
   
 
   <div class="container">
-    <form action="..\connect.php" method="post">
+    <form action="Iprocess_quiz.php" method="post">
+    <h2>Create Identification Quiz</h2>
       <div class="row">
         <label for="title">Quiz Title:</label>
         <input type="text" name="title" id="title" required>

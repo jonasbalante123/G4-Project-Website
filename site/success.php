@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Created Successfully</title>
   <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
-  <link rel="stylesheet" href="Identification.css">
-  <link rel="stylesheet" href="..\pfp.css">
+  <link rel="stylesheet" href="pfp.css">
 </head>
 <body>
   <!-- Navigation -->

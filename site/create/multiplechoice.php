@@ -1,16 +1,13 @@
-<?php
-require_once 'formultiplechoice.php';
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a Multiple Choice Quiz</title>
-    <link rel="stylesheet" href="..\..\node_modules\@picocss\pico\css\pico.min.css">
-    <link rel="stylesheet" href="..\pfp.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creating Quizzes</title>
+  <link rel="stylesheet" href="..\..\node_modules\@picocss\pico\css\pico.min.css">
+  <link rel="stylesheet" href="Identification.css">
+  <link rel="stylesheet" href="..\pfp.css">
 </head>
 <body>
   <!-- Navigation -->
@@ -68,108 +65,98 @@ require_once 'formultiplechoice.php';
   </nav>
 
   <div class="container">
-  <form action="formultiplechoice.php" method="post">
-        <h2>Create Multiple Choice Quiz</h2>
-        <label for="quizTitle">
-            Quiz Title:
-            <input type="text" name="quizTitle" required>
-        </label>
-        <label for="quizDescription">Quiz Description:</label>
-        <textarea name="quizDescription" rows="4" required></textarea>
-
-        <h3>Questions:</h3>
-        <input type="hidden" name="quizType" value="multiple-choice">
-
-
-        <div id="questionContainer">
-          <div class="question">
-            <label for="question1">Question:</label>
-            <input type="text" name="question[]" required>
-
-            <label for="correctOption1">Correct Option:</label>
-            <select name="correctOption[]" required>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
-            </select>
-
-            <div class="options">
-              <label for="option1">Option 1:</label>
-              <input type="text" name="options[1][]" required>
-
-              <label for="option2">Option 2:</label>
-              <input type="text" name="options[2][]" required>
-
-              <label for="option3">Option 3:</label>
-              <input type="text" name="options[3][]" required>
-
-              <label for="option4">Option 4:</label>
-              <input type="text" name="options[4][]" required>
-            </div>
-          </div>
+    <form action="mprocess_quiz.php" method="post">
+    <h2>Create Multiplication Quiz</h2>
+      <div class="row">
+        <label for="title">Quiz Title:</label>
+        <input type="text" name="title" id="title" required>
+      </div>
+      
+      <div class="row">
+        <label for="description">Quiz Description:</label>
+        <textarea name="description" id="description" rows="4" cols="50"></textarea>
+      </div>
+      
+      <h3>Questions</h3>
+      
+      <div id="questions">
+        <div class="question">
+          <label for="question1">Question 1:</label>
+          <input type="text" name="question[]" required><br>
+          
+          <label for="options1">Options:</label><br>
+          <input type="text" name="option[0][]" required><br>
+          <input type="text" name="option[0][]" required><br>
+          <input type="text" name="option[0][]" required><br>
+          
+          <label for="answer1">Correct Answer:</label>
+          <input type="text" name="answer[]" required><br>
         </div>
-
-        <button type="button" onclick="addQuestion()">Add Question</button>
-        <button type="submit">Create Quiz</button>
+      </div>
+      
+      <button type="button" onclick="addQuestion()">Add Question</button><br><br>
+      <input type="submit" value="Save Quiz">
     </form>
-
-  
     <script>
-  let questionCount = 1;
+       let questionCount = 1;
 
-  function addQuestion() {
-    questionCount++;
+        function addQuestion() {
+        questionCount++;
 
-    const questionContainer = document.getElementById("questionContainer");
+        const questionsDiv = document.getElementById('questions');
 
-    const questionDiv = document.createElement("div");
-    questionDiv.classList.add("question");
-
-    const questionLabel = document.createElement("label");
-    questionLabel.textContent = "Question:";
-    const questionInput = document.createElement("input");
-    questionInput.type = "text";
-    questionInput.name = "question[]";
-    questionInput.required = true;
-
-    const correctOptionLabel = document.createElement("label");
-    correctOptionLabel.textContent = "Correct Option:";
-    const correctOptionSelect = document.createElement("select");
-    correctOptionSelect.name = "correctOption[]";
-    correctOptionSelect.required = true;
-    correctOptionSelect.innerHTML = `
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-      <option value="4">Option 4</option>
-    `;
-
-    const optionsDiv = document.createElement("div");
-    optionsDiv.classList.add("options");
-
-    for (let i = 1; i <= 4; i++) {
-      const optionLabel = document.createElement("label");
-      optionLabel.textContent = `Option ${i}:`;
-      const optionInput = document.createElement("input");
-      optionInput.type = "text";
-      optionInput.name = `options[${questionCount}][]`; // Fix the name attribute here
-      optionInput.required = true;
-
-      optionsDiv.appendChild(optionLabel);
-      optionsDiv.appendChild(optionInput);
-    }
-
-    questionDiv.appendChild(questionLabel);
-    questionDiv.appendChild(questionInput);
-    questionDiv.appendChild(correctOptionLabel);
-    questionDiv.appendChild(correctOptionSelect);
-    questionDiv.appendChild(optionsDiv);
-
-    questionContainer.appendChild(questionDiv);
-  }
-</script>
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
 
 
+        const questionLabel = document.createElement('label');
+        questionLabel.htmlFor = `question${questionCount}`;
+        questionLabel.textContent = `Question ${questionCount}:`;
 
+        const questionInput = document.createElement('input');
+        questionInput.type = 'text';
+        questionInput.name = 'question[]';
+        questionInput.required = true;
+
+        const optionsLabel = document.createElement('label');
+        optionsLabel.htmlFor = `options${questionCount}`;
+        optionsLabel.textContent = 'Options:';
+
+        const optionsInputs = [];
+        for (let i = 1; i <= 3; i++) {
+        const optionInput = document.createElement('input');
+        optionInput.type = 'text';
+        optionInput.name = `option[${questionCount - 1}][]`; // Corrected indexing
+        optionInput.required = true;
+        optionsInputs.push(optionInput);
+       }
+
+        const answerLabel = document.createElement('label');
+        answerLabel.htmlFor = `answer${questionCount}`;
+        answerLabel.textContent = 'Correct Answer:';
+
+        const answerInput = document.createElement('input');
+        answerInput.type = 'text';
+        answerInput.name = 'answer[]';
+        answerInput.required = true;
+
+        questionDiv.appendChild(questionLabel);
+        questionDiv.appendChild(questionInput);
+        questionDiv.appendChild(document.createElement('br'));
+        questionDiv.appendChild(optionsLabel);
+        questionDiv.appendChild(document.createElement('br'));
+        optionsInputs.forEach(optionInput => {
+          questionDiv.appendChild(optionInput);
+          questionDiv.appendChild(document.createElement('br'));
+        });
+        questionDiv.appendChild(answerLabel);
+        questionDiv.appendChild(answerInput);
+
+        questionsDiv.appendChild(questionDiv);
+      }
+    </script>
   </div>
+
+  <script src="..\..\minimal-theme-switcher.js"></script>
+</body>
+</html>

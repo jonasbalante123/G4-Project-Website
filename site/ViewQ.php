@@ -107,50 +107,6 @@ $conn->close();
     </ul>
   </nav>
   <div class="container">
-  <h1>True/False Quizzes</h1>
-  <?php if (empty($trueFalseQuizzes)): ?>
-    <p>No True/False quizzes found.</p>
-  <?php else: ?>
-    <ul>
-      <?php foreach ($trueFalseQuizzes as $quiz): ?>
-        <li>
-          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
-          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
-          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php endif; ?>
 
-  <h1>Identification Quizzes</h1>
-  <?php if (empty($identificationQuizzes)): ?>
-    <p>No Identification quizzes found.</p>
-  <?php else: ?>
-    <ul>
-      <?php foreach ($identificationQuizzes as $quiz): ?>
-        <li>
-          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
-          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
-          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php endif; ?>
-
-  <h1>Multiple Choice Quizzes</h1>
-  <?php if (empty($multipleChoiceQuizzes)): ?>
-    <p>No Multiple Choice quizzes found.</p>
-  <?php else: ?>
-    <ul>
-      <?php foreach ($multipleChoiceQuizzes as $quiz): ?>
-        <li>
-          <strong>Title:</strong> <?php echo $quiz['title']; ?><br>
-          <strong>Description:</strong> <?php echo $quiz['description']; ?><br>
-          <a href="viewQ.php?quiz_id=<?php echo $quiz['id']; ?>">View Questions</a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php endif; ?>
-  </div>
 </body>
 </html>
