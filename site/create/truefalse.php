@@ -62,7 +62,7 @@
   </nav>
 
     <div class="container">
-        <form action="..\connect.php" method="post">
+        <form action="tfprocess_quiz.php" method="post">
             <h2>Create True/False Quiz</h2>
             <label for="quizTitle">
                 Quiz Title:
