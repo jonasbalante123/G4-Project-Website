@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </article>
-    <script src="../minimal-theme-switcher.js"></script>
+    <script src="minimal-theme-switcher.js"></script>
 </body>
 
 </html>

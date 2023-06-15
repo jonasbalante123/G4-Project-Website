@@ -84,7 +84,7 @@ include("login_checker.php");?>
         <a href="Profile.php" class="secondary">Profile</a>
       </li>
       <li>
-        <a href="#settings" class="secondary">Settings</a>
+        <a href="settings.php" class="secondary">Settings</a>
       </li>
       <li>
         <a href="SignUp.php" class="secondary">Sign Out</a>

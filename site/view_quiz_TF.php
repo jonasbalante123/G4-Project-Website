@@ -150,10 +150,10 @@ $conn->close();
                     </summary>
                     <ul role="listbox">
                         <li>
-                            <a href="Profile.html" class="secondary">Profile</a>
+                            <a href="Profile.php" class="secondary">Profile</a>
                         </li>
                         <li>
-                            <a href="settings.html" class="secondary">Settings</a>
+                            <a href="settings.php" class="secondary">Settings</a>
                         </li>
                         <li>
                             <a href="logout.php" class="secondary">Sign Out</a>

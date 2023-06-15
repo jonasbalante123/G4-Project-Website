@@ -55,10 +55,10 @@
                 </summary>
               <ul role="listbox">
         <li>
-          <a href="Profile.html" class="secondary">Profile</a>
+          <a href="Profile.php" class="secondary">Profile</a>
         </li>
         <li>
-          <a href="#settings" class="secondary">Settings</a>
+          <a href="Settings.php" class="secondary">Settings</a>
         </li>
         <li>
           <a href="SignUp.php
@@ -128,21 +128,6 @@
           </tbody>
         </table>
       </figure>
-      <div class="container">
-        <details>
-            <summary>According to Jonas</summary>
-            <blockquote>
-                I got tired of dealing with css. And rather than dealing with it like a total chad.
-                I learned the "easier" css. Search for "utility-first CSS framework" and you'll see
-                What I meant.
-                <footer>-JJonasB</footer>
-            </blockquote>
-          </details>
-          <hgroup>
-            <h1>Note</h1>
-            <h2>JJonasB and Jonas are <strong>NOT</strong> the same entity</h2>
-          </hgroup>
-      </div>
 </main>
 
 </body>

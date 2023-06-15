@@ -44,19 +44,21 @@
       <li>
         <details role="list" dir="rtl">
           <summary aria-haspopup="listbox" role="link">
-            <a href="#" class="secondary profileImg">
-              <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
-            </a>
+          <a href="#" class="secondary profileImg">
+    <img src="<?php echo isset($_SESSION['profile_picture']) ? $_SESSION['profile_picture'] : 'https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png'; ?>" width="34" height="34">
+</a>
+
+
           </summary>
           <ul role="listbox">
             <li>
-              <a href="Profile.html" class="secondary">Profile</a>
+              <a href="../Profile.php" class="secondary">Profile</a>
             </li>
             <li>
-              <a href="../settings.html" class="secondary">Settings</a>
+              <a href="../settings.php" class="secondary">Settings</a>
             </li>
             <li>
-              <a href="../SignUp.php" class="secondary">Sign Out</a>
+              <a href="../Logout.php" class="secondary">Sign Out</a>
             </li>
           </ul>
         </details>
