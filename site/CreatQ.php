@@ -50,10 +50,10 @@ include("login_checker.php");?>
         <details role="list" dir="rtl">
           <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
           <ul role="listbox">
-            <li><a href="CreatQ.html">Create Quiz</a></li>
+            <li><a href="CreatQ.php">Create Quiz</a></li>
             <li><a href="ViewQ.php">View Quizzes</a></li>
             <li><a href="">Leaderboards</a></li>
-            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="AboutUs.php">About Us</a></li>
           </ul>
         </details>
       </li>

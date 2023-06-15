@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is already logged in
-if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+if (isset($_SESSION['username']) && isset($_SESSION['email']) && isset($_SESSION['uid'])) {
     // Redirect the user to main.php
     header("Location: site/main.php");
     exit();
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Create a database connection
     $conn = new mysqli($host, $dbUsername, $dbPassword, $database);
+
     if ($conn->connect_error) {
         die('Database connection error: ' . $conn->connect_error);
     }
@@ -34,14 +35,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows === 1) {
         // User exists, verify password
         $user = $result->fetch_assoc();
+        
         if ($password === $user['password']) {
             // Password is correct, set session variables
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
             
+            // Retrieve UID from the user_accounts table
+            $query2 = "SELECT UID FROM user_accounts WHERE username = ?";
+            $stmt2 = $conn->prepare($query2);
+            $stmt2->bind_param('s', $username);
+            $stmt2->execute();
+            $stmt2->bind_result($uid);
 
+            if ($stmt2->fetch()) {
+                $_SESSION['uid'] = $uid;
+            }
+            $stmt2->close();
+
+    
             // Redirect the user to main.php
-            header("Location: site\\main.php");
+            header("Location: site/main.php");
             exit();
         } else {
             $error = "Invalid username or password";
@@ -49,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Invalid username or password";
     }
+    
 
     $conn->close();
 }

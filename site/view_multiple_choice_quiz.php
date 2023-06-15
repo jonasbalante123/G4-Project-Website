@@ -1,45 +1,38 @@
 <?php
-session_start();
+// Assuming you have a MySQL database connection
+$host = 'localhost';
+$dbUsername = 'root';
+$dbPassword = '';
+$database = 'quiz_db';
 
-include_once 'connect.php';
-
-// Check if the user is logged in
-if (!isset($_SESSION['username']) || !isset($_SESSION['email'])) {
-    // Redirect the user to the login page
-    header("Location: ../login.php");
-    exit();
+// Create a database connection
+$conn = new mysqli($host, $dbUsername, $dbPassword, $database);
+if ($conn->connect_error) {
+    die('Database connection error: ' . $conn->connect_error);
 }
 
-// Retrieve the username and email from the session
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
+// Retrieve the available multiple-choice quizzes
+$query = "SELECT * FROM mquizzes";
+$result = $conn->query($query);
 
-// Retrieve the user's password from the database
-$query = "SELECT `password` FROM `user_accounts` WHERE username = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param('s', $username);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    $password = 'N/A';
-} else {
-    $row = $result->fetch_assoc();
-    $password = $row['password'];
+if (!$result) {
+    die('Error retrieving quizzes: ' . $conn->error);
 }
+
+// Close the database connection
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
+    <title>View Multiple Choice Quiz</title>
+    <link rel="stylesheet" href="../node_modules/@picocss/pico/css/pico.min.css">
+    <link rel="stylesheet" href="view_true_false_quiz.css">
     <link rel="stylesheet" href="pfp.css">
 </head>
-
 <body>
     <nav class="container-fluid">
         <ul>
@@ -52,7 +45,7 @@ if ($result->num_rows === 0) {
                     <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
                     <ul role="listbox">
                         <li><a href="CreatQ.php">Create Quiz</a></li>
-                        <li><a href="ViewQ.php">View Quizes</a></li>
+                        <li><a href="ViewQ.php">View Quizzes</a></li>
                         <li><a href="">Leaderboards</a></li>
                         <li><a href="AboutUs.php">About Us</a></li>
                     </ul>
@@ -72,7 +65,8 @@ if ($result->num_rows === 0) {
 
             <li>
                 <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
+                    <summary aria-haspopup="listbox" role="link">
+                        <a href="#" class="secondary profileImg">
                             <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
                         </a>
                     </summary>
@@ -91,21 +85,33 @@ if ($result->num_rows === 0) {
             </li>
         </ul>
     </nav>
-    <main class="container">
-        <p>Your Username</p>
-        <?php 
-        echo $username . ' <a href="#">Edit?</a>';
-        ?> <br><br>
-        <p>Password</p>
-        <?php 
-        echo $password . ' <a href="#">Edit?</a>';
-        ?>
-        <p>
-            Making an image that can be changed and will take effect on the whole site, just on the session.
-            <br>
-            But for now, this works.
-        </p>
-    </main>
-</body>
 
+    <section class="container headings">
+        <h1>View Multiple Choice Quiz</h1>
+        <p>Click on a quiz to view details:</p>
+    </section>
+
+    <div class="container">
+        <table class="quiz-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['title']); ?></td>
+                        <td><?php echo htmlspecialchars($row['description']); ?></td>
+                        <td><a href="view_quiz_MC.php?id=<?php echo urlencode($row['id']); ?>" class="quiz-link">Take Quiz</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../minimal-theme-switcher.js"></script>
+</body>
 </html>

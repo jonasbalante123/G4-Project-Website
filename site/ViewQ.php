@@ -20,10 +20,10 @@
                 <details role="list" dir="rtl">
                     <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
                     <ul role="listbox">
-                        <li><a href="..\CreatQ.php">Create Quiz</a></li>
-                        <li><a href="..\ViewQ.php">View Quizzes</a></li>
+                        <li><a href="CreatQ.php">Create Quiz</a></li>
+                        <li><a href="ViewQ.php">View Quizzes</a></li>
                         <li><a href="">Users</a></li>
-                        <li><a href="..\AboutUs.php">About Us</a></li>
+                        <li><a href="AboutUs.php">About Us</a></li>
                     </ul>
                 </details>
             </li>
@@ -69,7 +69,7 @@
         <div class="quiz-buttons">
             <button class="quiz-button color1" onclick="viewQuiz('True/False Quiz')">True/False Quiz</button>
             <button class="quiz-button color2" onclick="viewQuiz('Multiple Choice Quiz')">Multiple Choice Quiz</button>
-            <button class="quiz-button color3" onclick="viewQuiz('Short Answer Quiz')">Short Answer Quiz</button>
+            <button class="quiz-button color3" onclick="viewQuiz('Short Answer Quiz')">Identification Quiz</button>
         </div>
     </div>
 
@@ -81,7 +81,7 @@
             } else if (quizType === 'Multiple Choice Quiz') {
                 window.location.href = 'view_multiple_choice_quiz.php';
             } else if (quizType === 'Short Answer Quiz') {
-                window.location.href = 'view_short_answer_quiz.php';
+                window.location.href = 'view_identification_quiz.php';
             }
         }
     </script>

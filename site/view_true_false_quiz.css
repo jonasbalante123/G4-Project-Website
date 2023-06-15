@@ -1,0 +1,17 @@
+.container {
+    margin-top: 20px;
+}
+
+.quiz-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.quiz-table tr:hover {
+    background-color: #292f35;
+}
+
+.quiz-link:hover {
+    text-decoration: underline;
+}
