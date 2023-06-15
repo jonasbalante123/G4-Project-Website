@@ -123,7 +123,6 @@ $conn->close();
 
 <body>
     <!-- Navigation -->
-    <!-- Navigation -->
     <nav class="container-fluid">
         <ul>
             <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>

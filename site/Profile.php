@@ -15,7 +15,7 @@ $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
 // Retrieve the user's password from the database
-$query = "SELECT `password` FROM `user_accounts` WHERE username = ?";
+$query = "SELECT `password`, `profile_picture` FROM `user_accounts` WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $username);
 $stmt->execute();
@@ -23,13 +23,15 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     $password = 'N/A';
+    $profilePicture = 'default-profile-picture.jpg';
 } else {
     $row = $result->fetch_assoc();
     $password = $row['password'];
+    $profilePicture = $row['profile_picture'];
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -41,71 +43,80 @@ if ($result->num_rows === 0) {
 </head>
 
 <body>
-    <nav class="container-fluid">
-        <ul>
-            <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
-        </ul>
-        <!-- Menu -->
-        <ul>
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
-                    <ul role="listbox">
-                        <li><a href="CreatQ.php">Create Quiz</a></li>
-                        <li><a href="ViewQ.php">View Quizes</a></li>
-                        <li><a href="">Leaderboards</a></li>
-                        <li><a href="AboutUs.php">About Us</a></li>
-                    </ul>
-                </details>
-            </li>
+    <!-- Navigation -->
 
-            <!-- Theme Changer -->
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary topnav">Theme</summary>
-                    <ul role="listbox">
-                        <li><a href="#" data-theme-switcher="light" color="black">Light</a></li>
-                        <li><a href="#" data-theme-switcher="dark" color="black">Dark</a></li>
-                    </ul>
-                </details>
-            </li>
-
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
-                            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
-                        </a>
-                    </summary>
-                    <ul role="listbox">
-                        <li>
-                            <a href="Profile.php" class="secondary">Profile</a>
-                        </li>
-                        <li>
-                            <a href="#settings" class="secondary">Settings</a>
-                        </li>
-                        <li>
-                            <a href="logout.php" class="secondary">Sign Out</a>
-                        </li>
-                    </ul>
-                </details>
-            </li>
+<nav class="container-fluid">
+  <ul>
+    <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
+  </ul>
+  <!-- Menu -->
+  <ul>
+    <li>
+      <details role="list" dir="rtl">
+        <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
+        <ul role="listbox">
+          <li><a href="CreatQ.php">Create Quiz</a></li>
+          <li><a href="ViewQ.php">View Quizzes</a></li>
+          <li><a href="">Leaderboards</a></li>
+          <li><a href="AboutUs.php">About Us</a></li>
         </ul>
-    </nav>
-    <main class="container">
-        <p>Your Username</p>
-        <?php 
-        echo $username . ' <a href="#">Edit?</a>';
-        ?> <br><br>
-        <p>Password</p>
-        <?php 
-        echo $password . ' <a href="#">Edit?</a>';
-        ?>
-        <p>
-            Making an image that can be changed and will take effect on the whole site, just on the session.
-            <br>
-            But for now, this works.
-        </p>
-    </main>
+      </details>
+    </li>
+<!-- Menu Tab -->
+
+  <!-- Theme Changer -->
+    <li>
+      <details role="list" dir="rtl">
+        <summary aria-haspopup="listbox" role="link" class="secondary topnav">Theme</summary>
+        <ul role="listbox">
+          <li><a href="#" data-theme-switcher="light" color="black">Light</a></li>
+          <li><a href="#" data-theme-switcher="dark" color="black">Dark</a></li>
+        </ul>
+      </details>
+    </li>
+
+<!--  <a href="#" class="secondary profileImg"> 
+            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34" alt="">
+            </a>-->
+      <li>
+        <details role="list" dir="rtl">
+          <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
+            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
+            </a>
+            </summary>
+          <ul role="listbox">
+    <li>
+      <a href="Profile.php" class="secondary">Profile</a>
+    </li>
+    <li>
+      <a href="#settings" class="secondary">Settings</a>
+    </li>
+    <li>
+      <a href="logout.php" class="secondary">Sign Out</a>
+    </li>
+          </ul>
+        </details>
+      </li>
+  </ul>
+  <!-- Theme Changer -->
+</nav>
+
+<div class="container">
+  <h1>Profile</h1>
+    <div class="grid">
+      <p>Username:</p> <span><?php echo $username; ?></span>
+    </div>
+    
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleEditForm(section) {
+            const formId = section + '-form';
+            const form = document.getElementById(formId);
+            form.classList.toggle('show');
+        }
+    </script>
 </body>
 
 </html>

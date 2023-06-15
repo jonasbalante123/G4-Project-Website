@@ -1,16 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// Establish a database connection
 $host = 'localhost';
-$db   = 'quiz_db';
-$user = 'root';
-$pass = '';
+    $dbUsername = 'root';
+    $dbPassword = '';
+    $database = 'quiz_db';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+    // Create a database connection
+    $conn = new mysqli($host, $dbUsername, $dbPassword, $database);
+    if ($conn->connect_error) {
+        die('Database connection error: ' . $conn->connect_error);
+    }
+    ?>
