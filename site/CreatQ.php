@@ -119,18 +119,13 @@ include("login_checker.php");?>
     <div class="container">
         <h1>How to</h1>
         <details>
-            <summary class="secondary">How to create a Multiple Choice quiz?</summary>
-            <p>…</p>
+            <summary class="secondary">How to create a quizzes?</summary>
+            <p>Step 1: Name your online test.<br>
+Step 2: Enter your questions.<br>
+Step 3: Set-up the answers.<br>
+Step 4: Format the questions<br>
+Step 5: Publish and share the test.</p>
         </details>
-        <details>
-            <summary>How to create a Identification quiz?</summary>
-            <p>…</p>
-        </details>
-        <details>
-            <summary>How to create a True or False quiz?</summary>
-            <p>…</p>
-        </details>
-    </div>
 </body>
 </html>
 <script src="..\minimal-theme-switcher.js"></script>

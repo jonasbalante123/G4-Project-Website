@@ -104,7 +104,7 @@ if ($result->num_rows === 0) {
 <div class="container">
   <h1>Profile</h1>
     <div class="grid">
-      <p>Username:</p> <span><?php echo $username; ?></span>
+      <p>Username:</p>  <?php echo $username; ?>
     </div>
     
 </div>
