@@ -43,13 +43,13 @@ function deleteUserAccount($userId)
 }
 
 // Update a user account
-function updateUserAccount($userId, $username, $password)
+function updateUserAccount($userId, $username, $password, $email)
 {
     global $conn;
 
-    $query = "UPDATE user_accounts SET username = ?, password = ? WHERE UID = ?";
+    $query = "UPDATE user_accounts SET username = ?, password = ?, email = ? WHERE UID = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssi', $username, $password, $userId);
+    $stmt->bind_param('sssi', $username, $password, $email, $userId);
     $stmt->execute();
     $stmt->close();
 }
@@ -78,8 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['account_action'])) {
     } elseif ($action === 'update') {
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $email = $_POST['email'];
 
-        updateUserAccount($userId, $username, $password);
+        updateUserAccount($userId, $username, $password, $email);
     }
 
     header("Location: ManageA.php");
@@ -134,12 +135,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['account_action'])) {
                                 </select>
                                 <div id="update-fields-<?php echo $account['UID']; ?>" style="display: none;">
                                     <label for="username-<?php echo $account['UID']; ?>">New Username:</label>
-                                    <input type="text" name="username" id="username-<?php echo $account['UID']; ?>">
+                                    <input type="text" name="username" id="username-<?php echo $account['UID']; ?> required">
                                     <br>
                                     <label for="password-<?php echo $account['UID']; ?>">New Password:</label>
                                     <input type="password" name="password" id="password-<?php echo $account['UID']; ?>">
                                     <br>
+                                    <label for="email-<?php echo $account['UID']; ?>">New Email:</label>
+                                    <input type="email" name="email" id="email-<?php echo $account['UID']; ?> required">
+                                    <br>
                                 </div>
+
                                 <button type="submit">Submit</button>
                             </form>
                         </td>
