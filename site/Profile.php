@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,169 +11,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="..\node_modules\@picocss\pico\css\pico.min.css">
-    <style>
-
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .profile-details {
-            margin-bottom: 1rem;
-        }
-
-        .profile-details label {
-            font-weight: bold;
-        }
-
-        .profile-details .edit-button {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: #5f7b8c;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .profile-details .edit-button:hover {
-            background-color: #43555f;
-        }
-
-        .edit-form {
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .edit-form .input-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .edit-form .input-group input[type="text"],
-        .edit-form .input-group input[type="password"],
-        .edit-form .input-group input[type="file"] {
-            flex: 1;
-            padding: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .edit-form .input-group button {
-            background-color: #5f7b8c;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-    </style>
 </head>
 
 <body>
-    <nav class="container-fluid">
-        <ul>
-            <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
-        </ul>
-        <!-- Menu -->
-        <ul>
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
-                    <ul role="listbox">
-                        <li><a href="CreatQ.php">Create Quiz</a></li>
-                        <li><a href="ViewQ.php">View Quizes</a></li>
-                        <li><a href="">Leaderboards</a></li>
-                        <li><a href="AboutUs.php">About Us</a></li>
-                    </ul>
-                </details>
-            </li>
+    <?php include "nav.php"?>
 
-            <!-- Theme Changer -->
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary topnav">Theme</summary>
-                    <ul role="listbox">
-                        <li><a href="#" data-theme-switcher="light" color="black">Light</a></li>
-                        <li><a href="#" data-theme-switcher="dark" color="black">Dark</a></li>
-                    </ul>
-                </details>
-            </li>
+    <div class="container">
+    <h1>Profile</h1>
 
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
-                            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
-                        </a>
-                    </summary>
-                    <ul role="listbox">
-                        <li>
-                            <a href="Profile.php" class="secondary">Profile</a>
-                        </li>
-                        <li>
-                            <a href="#settings" class="secondary">Settings</a>
-                        </li>
-                        <li>
-                            <a href="logout.php" class="secondary">Sign Out</a>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-        </ul>
-    </nav>
-    <main class="container">
-        <div class="card">
-            <h2 class="card-title">Your Profile</h2>
-            <div class="profile-details">
-                <label>Username:</label>
-                <span><?php echo $username; ?></span>
-                <button class="edit-button">Edit</button>
-                <form class="edit-form" id="username-form" action="" method="post">
-                    <div class="input-group">
-                        <input type="text" name="new_username" placeholder="New Username" required>
-                        <button type="submit">Save</button>
-                    </div>
-                </form>
-            </div>
-            <div class="profile-details">
-                <label>Password:</label>
-                <span><?php echo $password; ?></span>
-                <button class="edit-button">Edit</button>
-                <form class="edit-form" id="password-form" action="" method="post">
-                    <div class="input-group">
-                        <input type="password" name="new_password" placeholder="New Password" required>
-                        <button type="submit">Save</button>
-                    </div>
-                </form>
-            </div>
-            <div class="profile-details">
-                <label>Profile Picture:</label>
-                <img src="path/to/profile_picture.jpg" alt="Profile Picture" width="100" height="100">
-                <button class="edit-button">Edit</button>
-                <form class="edit-form" id="profile-picture-form" action="" method="post" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <input type="file" name="profile_picture" accept="image/*" required>
-                        <button type="submit">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-    <script>
-        var editButtons = document.getElementsByClassName('edit-button');
-        for (var i = 0; i < editButtons.length; i++) {
-            editButtons[i].addEventListener('click', function() {
-                var form = this.nextElementSibling;
-                form.classList.toggle('show');
-            });
+    <h2>User Information</h2>
+    <p>Username: <?php echo $_SESSION['username']; ?></p>
+    <p>Email: <?php echo $_SESSION['email']; ?></p>
+
+    <h2>Quiz History</h2>
+    <?php
+    // Assuming you have the necessary credentials for your database connection
+    $host = 'localhost'; // Replace with your database host
+    $username = 'root'; // Replace with your database username
+    $password = ''; // Replace with your database password
+    $dbName = 'quiz_db'; // Replace with your database name
+
+    // Establish a database connection
+    $connection = mysqli_connect($host, $username, $password, $dbName);
+
+    // Check if the connection was successful
+    if (!$connection) {
+        die('Database connection failed: ' . mysqli_connect_error());
+    }
+
+    $userId = $_SESSION['uid']; // User ID from the session
+
+    // Fetch quiz history from the database
+    $query = "SELECT `id`, `user_id`, `quiz_id`, `quiz_type`, `score`, `completion_date` FROM `quiz_scores` WHERE `user_id` = $userId";
+    $result = mysqli_query($connection, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Display quiz history in a table
+        echo '<table>';
+        echo '<tr><th>Quiz</th><th>Score</th><th>Completion Date</th></tr>';
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $quizId = $row['quiz_id'];
+            $score = $row['score'];
+            $completionDate = $row['completion_date'];
+
+            // Retrieve quiz name based on the quiz type
+            $quizType = $row['quiz_type'];
+            $quizName = '';
+
+            if ($quizType == 'tf') {
+                // True/False quiz
+                $quizQuery = "SELECT `title` FROM `tfquizzes` WHERE `id` = $quizId";
+                $quizResult = mysqli_query($connection, $quizQuery);
+
+                if ($quizResult && mysqli_num_rows($quizResult) > 0) {
+                    $quizRow = mysqli_fetch_assoc($quizResult);
+                    $quizName = $quizRow['title'];
+                }
+            } elseif ($quizType == 'm') {
+                // Multiple-choice quiz
+                $quizQuery = "SELECT `title` FROM `quizzes` WHERE `id` = $quizId";
+                $quizResult = mysqli_query($connection, $quizQuery);
+
+                if ($quizResult && mysqli_num_rows($quizResult) > 0) {
+                    $quizRow = mysqli_fetch_assoc($quizResult);
+                    $quizName = $quizRow['title'];
+                }
+            } elseif ($quizType == 'i') {
+                // Interactive quiz
+                $quizQuery = "SELECT `title` FROM `mquizzes` WHERE `id` = $quizId";
+                $quizResult = mysqli_query($connection, $quizQuery);
+
+                if ($quizResult && mysqli_num_rows($quizResult) > 0) {
+                    $quizRow = mysqli_fetch_assoc($quizResult);
+                    $quizName = $quizRow['title'];
+                }
+            }
+
+            if (!empty($quizName)) {
+                echo '<tr>';
+                echo '<td>' . $quizName . '</td>';
+                echo '<td>' . $score . '</td>';
+                echo '<td>' . $completionDate . '</td>';
+                echo '</tr>';
+            }
         }
-    </script>
+
+        echo '</table>';
+    } else {
+        echo 'No quiz history found.';
+    }
+
+    // Close the database connection
+    mysqli_close($connection);
+    ?>
+</div>
 </body>
 
 </html>

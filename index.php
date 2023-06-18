@@ -40,7 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Password is correct, set session variables
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
-            
+
+            // Check if the user is an admin
+            if ($user['user_type'] === 'admin') {
+                $_SESSION['is_admin'] = true;
+            } else {
+                $_SESSION['is_admin'] = false;
+            }
+
             // Retrieve UID from the user_accounts table
             $query2 = "SELECT UID FROM user_accounts WHERE username = ?";
             $stmt2 = $conn->prepare($query2);
@@ -67,7 +74,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $conn->close();
 }
+
+function getProfilePicture() {
+    // Retrieve the profile picture URL from the session or database
+
+    // Replace this with your own logic to retrieve the URL dynamically
+    if (isset($_SESSION['profile_picture'])) {
+        return $_SESSION['profile_picture'];
+    } else {
+        return "../dafault.png";
+    }
+}
 ?>
+
 
 <!doctype html>
 <html lang="en" data-theme="dark">

@@ -40,6 +40,6 @@ if (isset($_FILES['profilePicture'])) {
 }
 
 // If no file was uploaded or an error occurred, redirect back to the profile page
-header("Location: Profile.php");
+header("Location: settings.php");
 exit();
 ?>

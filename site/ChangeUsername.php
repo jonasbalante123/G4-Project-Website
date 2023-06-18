@@ -44,6 +44,6 @@ if ($newUsername !== $currentUsername) {
 }
 
 // If the new username is invalid or already taken, redirect back to the profile page
-header("Location: Profile.php");
+header("Location: settings.php");
 exit();
 ?>

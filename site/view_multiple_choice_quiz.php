@@ -112,6 +112,6 @@ $conn->close();
         </table>
     </div>
 
-    <script src="../minimal-theme-switcher.js"></script>
+
 </body>
 </html>

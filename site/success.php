@@ -70,6 +70,6 @@
     <p><a href="main.php">Go back to the main page</a></p>
   </div>
 
-  <script src="..\minimal-theme-switcher.js"></script>
+
 </body>
 </html>

@@ -38,64 +38,7 @@ include("login_checker.php");?>
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-
-<nav class="container-fluid">
-    <ul>
-      <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
-    </ul>
-    <!-- Menu -->
-    <ul>
-      <li>
-        <details role="list" dir="rtl">
-          <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
-          <ul role="listbox">
-            <li><a href="CreatQ.php">Create Quiz</a></li>
-            <li><a href="ViewQ.php">View Quizzes</a></li>
-            <li><a href="">Leaderboards</a></li>
-            <li><a href="AboutUs.php">About Us</a></li>
-          </ul>
-        </details>
-      </li>
-  <!-- Menu Tab -->
-  
-    <!-- Theme Changer -->
-      <li>
-        <details role="list" dir="rtl">
-          <summary aria-haspopup="listbox" role="link" class="secondary topnav">Theme</summary>
-          <ul role="listbox">
-            <li><a href="#" data-theme-switcher="light" color="black">Light</a></li>
-            <li><a href="#" data-theme-switcher="dark" color="black">Dark</a></li>
-          </ul>
-        </details>
-      </li>
-  
-  <!--  <a href="#" class="secondary profileImg"> 
-              <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34" alt="">
-              </a>-->
-        <li>
-          <details role="list" dir="rtl">
-            <summary aria-haspopup="listbox" role="link"><a href="#" class="secondary profileImg">
-              <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
-              </a>
-              </summary>
-            <ul role="listbox">
-      <li>
-        <a href="Profile.php" class="secondary">Profile</a>
-      </li>
-      <li>
-        <a href="settings.php" class="secondary">Settings</a>
-      </li>
-      <li>
-        <a href="SignUp.php" class="secondary">Sign Out</a>
-      </li>
-            </ul>
-          </details>
-        </li>
-    </ul>
-    <!-- Theme Changer -->
-  </nav>
-  <!-- Navigation -->
+    <?php include "nav.php"?>
 
 <article>
     <main class="container">  
@@ -128,4 +71,4 @@ Step 5: Publish and share the test.</p>
         </details>
 </body>
 </html>
-<script src="..\minimal-theme-switcher.js"></script>
+

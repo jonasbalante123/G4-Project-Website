@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 // Assuming you have a MySQL database connection
 $host = 'localhost';
 $dbUsername = 'root';
@@ -19,7 +18,7 @@ if (isset($_GET['id'])) {
     $quizId = $_GET['id'];
 
     // Prepare and execute the query to get the quiz from the database
-    $query = "SELECT * FROM tfquizzes WHERE id = ?";
+    $query = "SELECT * FROM quizzes WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $quizId);
     $stmt->execute();
@@ -76,19 +75,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $query = "INSERT INTO quiz_scores (user_id, quiz_id, quiz_type, score, completion_date) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            
+
             // Bind the parameters
             $stmt->bind_param('iisss', $userId, $quizId, $quizType, $score, $completionDate);
-            
+
             // Execute the statement
-            $stmt->execute();
             if ($stmt->execute()) {
                 echo "Scroll down to see your score!";
             } else {
                 echo "Error: " . $stmt->error;
             }
-            
-            
         }
     }
 }
@@ -96,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Close the database connection
 $conn->close();
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -110,59 +107,7 @@ $conn->close();
 </head>
 
 <body>
- <!-- Navigation -->
- <nav class="container-fluid">
-        <ul>
-            <li><strong><a href="main.php" class="contrast">Quiz Master</a></strong></li>
-        </ul>
-        <!-- Menu -->
-        <ul>
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary">Menu</summary>
-                    <ul role="listbox">
-                        <li><a href="CreatQ.php">Create Quiz</a></li>
-                        <li><a href="ViewQ.php">View Quizzes</a></li>
-                        <li><a href="">Users</a></li>
-                        <li><a href="AboutUs.php">About Us</a></li>
-                    </ul>
-                </details>
-            </li>
-
-            <!-- Theme Changer -->
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link" class="secondary topnav">Theme</summary>
-                    <ul role="listbox">
-                        <li><a href="#" data-theme-switcher="light" color="black">Light</a></li>
-                        <li><a href="#" data-theme-switcher="dark" color="black">Dark</a></li>
-                    </ul>
-                </details>
-            </li>
-
-            <!-- Profile -->
-            <li>
-                <details role="list" dir="rtl">
-                    <summary aria-haspopup="listbox" role="link">
-                        <a href="#" class="secondary profileImg">
-                            <img src="https://cdn.discordapp.com/attachments/1107703701864448113/1108021799863730307/Heart_Detailed_2.png" width="34" height="34">
-                        </a>
-                    </summary>
-                    <ul role="listbox">
-                        <li>
-                            <a href="Profile.php" class="secondary">Profile</a>
-                        </li>
-                        <li>
-                            <a href="settings.php" class="secondary">Settings</a>
-                        </li>
-                        <li>
-                            <a href="logout.php" class="secondary">Sign Out</a>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-        </ul>
-    </nav>
+<?php include "nav.php"?>
 
 <div class="container">
     <hgroup>
